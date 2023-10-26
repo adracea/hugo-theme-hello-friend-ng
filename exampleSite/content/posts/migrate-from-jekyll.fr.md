@@ -8,7 +8,7 @@ featuredpath = ""
 linktitle = ""
 slug = "Migrer vers Hugo depuis Jekyll"
 title = "Migrer vers Hugo depuis Jekyll"
-type = ["posts","post"]
+type = ["logs","log"]
 [ author ]
   name = "Hugo Authors"
 +++
@@ -179,7 +179,7 @@ J'ai simplement changé :
     "One of my favorite touristy-type photos. I secretly waited for the
     good light while we were "having fun" and took this. Only regret: a
     stupid pole in the top-left corner of the frame I had to clumsily get
-    rid of at post-processing."
+    rid of at log-processing."
     ->http://www.flickr.com/photos/alexnormand/4829260124/in/
         set-72157624547713078/ %}
 ```
@@ -193,7 +193,7 @@ différente de la `figure` intégrée) :
     title="One of my favorite touristy-type photos. I secretly waited for the
     good light while we were having fun and took this. Only regret: a stupid
     pole in the top-left corner of the frame I had to clumsily get rid of at
-    post-processing."
+    log-processing."
     link="http://www.flickr.com/photos/alexnormand/4829260124/in/
             set-72157624547713078/" */%}}
 ```

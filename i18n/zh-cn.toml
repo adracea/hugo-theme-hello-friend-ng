@@ -6,7 +6,7 @@
 [translations]
 other = "译文"
 
-[postAvailable]
+[logAvailable]
 other = "其他语言"
 
 
@@ -22,7 +22,7 @@ other = "主页"
 other = "噢，找不到页面……"
 
 # Please add hasCJKLanguage = true under [languages.zh-cn] for the below to behave correctly
-# posts/single.html
+# logs/single.html
 #
 [readingTime]
 one   = "一分钟"

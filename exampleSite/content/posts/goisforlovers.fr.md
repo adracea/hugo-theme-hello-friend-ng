@@ -8,7 +8,7 @@ featuredpath = "date"
 linktitle = ""
 slug = "Introduction aux modeles Hugo"
 title = "Introduction aux modèles (Hu)go"
-type = ["posts","post"]
+type = ["logs","log"]
 [ author ]
   name = "Michael Henderson"
 +++
@@ -340,7 +340,7 @@ page, vous pouvez le faire comme dans l'exemple suivant :
 
 ```
 <nav class="recent">
-  <h1>Recent Posts</h1>
+  <h1>Recent Logs</h1>
   <ul>{{range first .Site.Params.SidebarRecentLimit .Site.Recent}}
     <li><a href="{{.RelPermalink}}">{{.Title}}</a></li>
   {{end}}</ul>

@@ -1,7 +1,7 @@
 {{ define "main" }}
     {{ $paginator := .Paginate .Data.Pages }}
     
-    <main class="posts">
+    <main class="logs">
         <h1>{{ .Title }}</h1>
 
         {{ if .Content }}
@@ -9,15 +9,15 @@
         {{ end }}
 
         {{ range $paginator.Pages.GroupByDate "2006" }}
-            <div class="posts-group">
-                <div class="post-year">{{ .Key }}</div>
+            <div class="logs-group">
+                <div class="log-year">{{ .Key }}</div>
 
-                <ul class="posts-list">
+                <ul class="logs-list">
                     {{ range .Pages }}
-                        <li class="post-item">
-                            <a href="{{.Permalink}}" class="post-item-inner">
-                                <span class="post-title">{{.Title}}</span>
-                                <span class="post-day">
+                        <li class="log-item">
+                            <a href="{{.Permalink}}" class="log-item-inner">
+                                <span class="log-title">{{.Title}}</span>
+                                <span class="log-day">
                                     {{ if .Site.Params.dateformShort }}
                                         {{ .Date.Format .Site.Params.dateformShort }}
                                     {{ else }}

@@ -6,7 +6,7 @@
 [translations]
 other = "Translations"
 
-[postAvailable]
+[logAvailable]
 other = "Also available in"
 
 
@@ -22,7 +22,7 @@ other = ">$ cd /home"
 other = "Oops, page not found…"
 
 
-# posts/single.html
+# logs/single.html
 #
 [readingTime]
 one   = "One minute"

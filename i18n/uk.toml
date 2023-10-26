@@ -6,7 +6,7 @@
 [translations]
 other = "Переклади"
 
-[postAvailable]
+[logAvailable]
 other = "Доступне на "
 
 
@@ -22,7 +22,7 @@ other = "Головна"
 other = "Упс, сторінка не знайдена…"
 
 
-# posts/single.html
+# logs/single.html
 #
 [readingTime]
 one   = "{{ .Count }} хвилина"

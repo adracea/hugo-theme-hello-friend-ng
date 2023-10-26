@@ -8,7 +8,7 @@ featuredpath = "date"
 linktitle = ""
 title = "Création d'un nouveau thème"
 slug = "Creation d'un nouveau theme"
-type = "post"
+type = "log"
 +++
 
 ## Introduction
@@ -243,7 +243,7 @@ Hugo ne fournit pas de thème par défaut. Il y a quelques-uns disponibles (j'ai
 
 Nous allons créer un nouveau thème appelé "zafta". Étant donné que le but de ce didacticiel est de vous montrer comment remplir les fichiers pour extraire votre contenu, le thème ne contiendra aucun CSS. En d'autres termes, moche mais fonctionnel.
 
-Tous les thèmes utilisent des philosophies différentes sur le contenu et la mise en page. Les philosophies fortes permettent de créer un thème facilement, mais différentes philosophies rendrons l'utilisation du thème plus difficile. Par exemple, Zafta utilise "post" au lieu de "blog". Lorsque vous construisez un thème, envisagez d'utiliser les termes que d'autres thèmes utilisent.
+Tous les thèmes utilisent des philosophies différentes sur le contenu et la mise en page. Les philosophies fortes permettent de créer un thème facilement, mais différentes philosophies rendrons l'utilisation du thème plus difficile. Par exemple, Zafta utilise "log" au lieu de "blog". Lorsque vous construisez un thème, envisagez d'utiliser les termes que d'autres thèmes utilisent.
 
 
 ### Créer un squelette
@@ -578,9 +578,9 @@ Maintenant que nous avons la page d'accueil générée avec un contenu statique,
 Hugo a une commande pour générer un squelette d'article, comme il le fait pour les sites et les thèmes.
 
 ```
-$ hugo --verbose new post/permier.md
+$ hugo --verbose new log/permier.md
 INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
-INFO: 2014/09/29 attempting to create  post/premier.md of post
+INFO: 2014/09/29 attempting to create  log/premier.md of log
 INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/
                             default.md
 ERROR: 2014/09/29 Unable to Cast <nil> to map[string]interface{}
@@ -593,7 +593,7 @@ C'est pas bon, n'est-ce pas ?
 La commande "new" utilise un archétype pour créer le fichier de l'article. Hugo crée un fichier d'archétype vide par défault, mais cela provoque une erreur lorsqu'il y a un thème. Pour moi, la solution était de créer un fichier d'archétype spécifiquement pour le type article.
 
 ```
-$ vi themes/zafta/archetypes/post.md
+$ vi themes/zafta/archetypes/log.md
 +++
 Description = ""
 Tags = []
@@ -603,30 +603,30 @@ Categories = []
 
 $ find themes/zafta/archetypes -type f | xargs ls -l
 -rw-r--r--  1 quoha  staff   0 Sep 29 21:53 themes/zafta/archetypes/default.md
--rw-r--r--  1 quoha  staff  51 Sep 29 21:54 themes/zafta/archetypes/post.md
+-rw-r--r--  1 quoha  staff  51 Sep 29 21:54 themes/zafta/archetypes/log.md
 
-$ hugo --verbose new post/premier.md
+$ hugo --verbose new log/premier.md
 INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
-INFO: 2014/09/29 attempting to create  post/premier.md of post
+INFO: 2014/09/29 attempting to create  log/premier.md of log
 INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/
-                            post.md
-INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/post/premier.md
-/Users/quoha/Sites/zafta/content/post/premier.md created
+                            log.md
+INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/log/premier.md
+/Users/quoha/Sites/zafta/content/log/premier.md created
 
-$ hugo --verbose new post/second.md
+$ hugo --verbose new log/second.md
 INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
-INFO: 2014/09/29 attempting to create  post/second.md of post
+INFO: 2014/09/29 attempting to create  log/second.md of log
 INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/
-                            post.md
-INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/post/second.md
-/Users/quoha/Sites/zafta/content/post/second.md created
+                            log.md
+INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/log/second.md
+/Users/quoha/Sites/zafta/content/log/second.md created
 
-$ ls -l content/post
+$ ls -l content/log
 total 16
 -rw-r--r--  1 quoha  staff  104 Sep 29 21:54 premier.md
 -rw-r--r--  1 quoha  staff  105 Sep 29 21:57 second.md
 
-$ cat content/post/premier.md
+$ cat content/log/premier.md
 +++
 Categories = []
 Description = ""
@@ -637,7 +637,7 @@ title = "premier"
 +++
 Mon permier article
 
-$ cat content/post/second.md
+$ cat content/log/second.md
 +++
 Categories = []
 Description = ""
@@ -678,9 +678,9 @@ La sortie annonce qu'il a créé 2 pages. Ce sont nos nouveaux articles:
 ```
 $ find public -type f -name '*.html' | xargs ls -l
 -rw-r--r--  1 quoha  staff  78 Sep 29 22:13 public/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/post/premier/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/post/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/post/second/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/log/premier/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/log/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/log/second/index.html
 $
 ```
 Les nouveaux fichiers sont vides parce que les modèles utilisé pour générer le contenu sont vides. La page d'accueil n'affiche pas non plus le nouveau contenu. Nous devons modifier les modèles pour ajouter les articles.
@@ -746,9 +746,9 @@ WARN: 2014/09/29 Unable to locate layout: [404.html theme/404.html]
 in 4 ms
 $ find public -type f -name '*.html' | xargs ls -l
 -rw-r--r--  1 quoha  staff  94 Sep 29 22:23 public/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/post/premier/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/post/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/post/second/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/log/premier/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/log/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/log/second/index.html
 $ cat public/index.html
 <!DOCTYPE html>
 <html>
@@ -769,9 +769,9 @@ Et, si c'est entièrement vrai, ce tutoriel devrai être plus court. Il y a quel
 
 ### Ajouter du contenu à l'article
 
-Nous travaillons avec des articles, qui sont stockés dans le répertoire content/post/. Cela signifie que leur section est "post" (et si nous n'avons rien fait de travers, leur type est également "post").
+Nous travaillons avec des articles, qui sont stockés dans le répertoire content/log/. Cela signifie que leur section est "log" (et si nous n'avons rien fait de travers, leur type est également "log").
 
-Hugo utilise la section et le type pour définir le modèle pour chaque partie du contenu. Hugo va d'abord chercher un modèle qui correspond à la section ou au type. S'il n'arrive pas à en trouver un, il va alors chercher dans le répertoire _default/. Il y a quelques cas que nous allons couvrir lorsque nous travaillerons avec les catégories et les tags, mais pour le moment, nous supposerons que Hugo va essayer post/single.html, puis _default/single.html.
+Hugo utilise la section et le type pour définir le modèle pour chaque partie du contenu. Hugo va d'abord chercher un modèle qui correspond à la section ou au type. S'il n'arrive pas à en trouver un, il va alors chercher dans le répertoire _default/. Il y a quelques cas que nous allons couvrir lorsque nous travaillerons avec les catégories et les tags, mais pour le moment, nous supposerons que Hugo va essayer log/single.html, puis _default/single.html.
 
 Maintenant que nous connaissons la règle de rechercher, regardons ce qui est mis à notre disposition actuellement:
 
@@ -780,7 +780,7 @@ $ find themes/zafta -name single.html | xargs ls -l
 -rw-r--r--  1 quoha  staff  132 Sep 29 17:31 themes/zafta/layouts/_default/
                                                 single.html
 ```
-Nous pourrions créer un nouveau modèle, post/single.html, ou modifier le modèle par défaut. Comme nous n'utilisons actuellement aucun autre type de contenu, commençons par mettre à jour le modèle par défaut.
+Nous pourrions créer un nouveau modèle, log/single.html, ou modifier le modèle par défaut. Comme nous n'utilisons actuellement aucun autre type de contenu, commençons par mettre à jour le modèle par défaut.
 
 Sovenez-vous, tout contenu pour lequel nous n'avons pas créé de modèle utilisera ce modèle. Cela peut être bien ou mauvais. Mauvais parce que je sais que nous allons ajouter d'autres types de contenu et nous allons devoir annuler certaines des modifications que nous avons effectuées. Mais c'est bien parce que nous allons pouvoir voir directement les résultats. C'est également bien de démarrer ici car nous pouvons commencer à faire la mise en place basique du site. Comme nous ajouterons plus de contenu, nous remanierons ce fichier et déplacerons la logique ailleur. Hugo fait cela plutôt bien, donc nous accepterons le coût et procèderons.
 
@@ -826,11 +826,11 @@ in 4 ms
 
 $ find public -type f -name '*.html' | xargs ls -l
 -rw-r--r--  1 quoha  staff   94 Sep 29 22:40 public/index.html
--rw-r--r--  1 quoha  staff  125 Sep 29 22:40 public/post/premier/index.html
--rw-r--r--  1 quoha  staff    0 Sep 29 22:40 public/post/index.html
--rw-r--r--  1 quoha  staff  128 Sep 29 22:40 public/post/second/index.html
+-rw-r--r--  1 quoha  staff  125 Sep 29 22:40 public/log/premier/index.html
+-rw-r--r--  1 quoha  staff    0 Sep 29 22:40 public/log/index.html
+-rw-r--r--  1 quoha  staff  128 Sep 29 22:40 public/log/second/index.html
 
-$ cat public/post/premier/index.html
+$ cat public/log/premier/index.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -843,7 +843,7 @@ $ cat public/post/premier/index.html
 </body>
 </html>
 
-$ cat public/post/second/index.html
+$ cat public/log/second/index.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -858,7 +858,7 @@ $ cat public/post/second/index.html
 $
 ```
 
-Notez que les articles ont maintenant un contenu. Vous pouvez aller sur localhost:1313/post/premier pour vérifier.
+Notez que les articles ont maintenant un contenu. Vous pouvez aller sur localhost:1313/log/premier pour vérifier.
 
 ### Lier du contenu
 
@@ -898,18 +898,18 @@ in 4 ms
 
 $ find public -type f -name '*.html' | xargs ls -l
 -rw-r--r--  1 quoha  staff  149 Sep 29 22:44 public/index.html
--rw-r--r--  1 quoha  staff  125 Sep 29 22:44 public/post/premier/index.html
--rw-r--r--  1 quoha  staff    0 Sep 29 22:44 public/post/index.html
--rw-r--r--  1 quoha  staff  128 Sep 29 22:44 public/post/second/index.html
+-rw-r--r--  1 quoha  staff  125 Sep 29 22:44 public/log/premier/index.html
+-rw-r--r--  1 quoha  staff    0 Sep 29 22:44 public/log/index.html
+-rw-r--r--  1 quoha  staff  128 Sep 29 22:44 public/log/second/index.html
 
 $ cat public/index.html
 <!DOCTYPE html>
 <html>
 <body>
 
-    <h1><a href="/post/second/">second</a></h1>
+    <h1><a href="/log/second/">second</a></h1>
 
-    <h1><a href="/post/premier/">premier</a></h1>
+    <h1><a href="/log/premier/">premier</a></h1>
 
 </body>
 </html>
@@ -919,7 +919,7 @@ $
 
 ### Créer une liste d'articles
 
-Nous avons les articles affichés sur la page d'accueil et sur leur propre page. Nous avons également un fichier public/post/index.html qui est vide. Faisons en sorte qu'il liste tous les articles (pas seulement les dix premiers).
+Nous avons les articles affichés sur la page d'accueil et sur leur propre page. Nous avons également un fichier public/log/index.html qui est vide. Faisons en sorte qu'il liste tous les articles (pas seulement les dix premiers).
 
 Nous devons décider quel modèle mettre à jour. Nous allons faire une liste, donc, cela doit être un modèle de liste. Regardons quels modèles de liste sont disponibles.
 
@@ -929,7 +929,7 @@ $ find themes/zafta -name list.html | xargs ls -l
                                             list.html
 ```
 
-Comme pour l'article seul, nous devons décider d'éditer _default/list.html ou de créer post/list.html. Nous n'avons toujours pas plusieurs types de contenu, alors restons cohérant et éditons le modèle de liste par défaut.
+Comme pour l'article seul, nous devons décider d'éditer _default/list.html ou de créer log/list.html. Nous n'avons toujours pas plusieurs types de contenu, alors restons cohérant et éditons le modèle de liste par défaut.
 
 ## Création d'une page de haut niveau
 
@@ -958,10 +958,10 @@ Générez le site web et vérifiez le résultat.
 $ find public -name '*.html' | xargs ls -l
 -rw-rw-r--  1 mdhender  staff   334 Sep 27 15:08 public/about-time/index.html
 -rw-rw-r--  1 mdhender  staff   527 Sep 27 15:08 public/index.html
--rw-rw-r--  1 mdhender  staff   358 Sep 27 15:08 public/post/premier-post/
+-rw-rw-r--  1 mdhender  staff   358 Sep 27 15:08 public/log/premier-log/
                                                     index.html
--rw-rw-r--  1 mdhender  staff     0 Sep 27 15:08 public/post/index.html
--rw-rw-r--  1 mdhender  staff   342 Sep 27 15:08 public/post/second-post/
+-rw-rw-r--  1 mdhender  staff     0 Sep 27 15:08 public/log/index.html
+-rw-rw-r--  1 mdhender  staff   342 Sep 27 15:08 public/log/second-log/
                                                     index.html
 ```
 
@@ -974,11 +974,11 @@ $ cat public/index.html
 <!DOCTYPE html>
 <html>
 <body>
-    <h1><a href="http://localhost:1313/post/theme/">
+    <h1><a href="http://localhost:1313/log/theme/">
         creating a new theme</a></h1>
     <h1><a href="http://localhost:1313/about-time/">about</a></h1>
-    <h1><a href="http://localhost:1313/post/second-post/">second</a></h1>
-    <h1><a href="http://localhost:1313/post/premier-post/">first</a></h1>
+    <h1><a href="http://localhost:1313/log/second-log/">second</a></h1>
+    <h1><a href="http://localhost:1313/log/premier-log/">first</a></h1>
 <script>document.write('<script src="http://'
         + (location.host || 'localhost').split(':')[0]
 		+ ':1313/livereload.js?mindelay=10"></'
@@ -995,7 +995,7 @@ $ vi themes/zafta/layouts/index.html
 <body>
   <h1>articles</h1>
   {{ range first 10 .Data.Pages }}
-    {{ if eq .Type "post"}}
+    {{ if eq .Type "log"}}
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     {{ end }}
   {{ end }}
@@ -1019,10 +1019,10 @@ Mais la page "à propos" est toujours rendue dans about-time/index.html.
 $ find public -name '*.html' | xargs ls -l
 -rw-rw-r--  1 mdhender  staff    334 Sep 27 15:33 public/about-time/index.html
 -rw-rw-r--  1 mdhender  staff    645 Sep 27 15:33 public/index.html
--rw-rw-r--  1 mdhender  staff    358 Sep 27 15:33 public/post/premier-post/
+-rw-rw-r--  1 mdhender  staff    358 Sep 27 15:33 public/log/premier-log/
                                                     index.html
--rw-rw-r--  1 mdhender  staff      0 Sep 27 15:33 public/post/index.html
--rw-rw-r--  1 mdhender  staff    342 Sep 27 15:33 public/post/second-post/
+-rw-rw-r--  1 mdhender  staff      0 Sep 27 15:33 public/log/index.html
+-rw-rw-r--  1 mdhender  staff    342 Sep 27 15:33 public/log/second-log/
                                                     index.html
 ```
 
@@ -1084,7 +1084,7 @@ $ vi themes/zafta/layouts/index.html
 
   <h1>articles</h1>
   {{ range first 10 .Data.Pages }}
-    {{ if eq .Type "post"}}
+    {{ if eq .Type "log"}}
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     {{ end }}
   {{ end }}
@@ -1155,7 +1155,7 @@ Admettons que nous avons rendu notre site tellement complexe que nous estimons q
 Restaurons le modèle simple par défaut avant d'oublier.
 
 ```
-$ mkdir themes/zafta/layouts/post
+$ mkdir themes/zafta/layouts/log
 $ vi themes/zafta/layouts/_default/single.html
 {{ partial "header.html" . }}
 
@@ -1169,7 +1169,7 @@ $ vi themes/zafta/layouts/_default/single.html
 Maintenant, nous allons modifier le modèle simple des articles. Si vous vous souvenez des règles d'Hugo, le moteur de modèles va utiliser cette version à la place de celle par défaut.
 
 ```
-$ vi themes/zafta/layouts/post/single.html
+$ vi themes/zafta/layouts/log/single.html
 {{ partial "header.html" . }}
 
   <h1>{{ .Title }}</h1>

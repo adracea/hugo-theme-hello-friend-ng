@@ -6,7 +6,7 @@
 [translations]
 other = "अनुवाद"
 
-[postAvailable]
+[logAvailable]
 other = "पढ़ें इस भाषा में"
 
 
@@ -22,7 +22,7 @@ other = "घर"
 other = "क्षमा करें ! पेज़ नहीं मिला…"
 
 
-# posts/single.html
+# logs/single.html
 #
 [readingTime]
 one   = "एक मिनट"

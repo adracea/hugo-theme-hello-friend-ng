@@ -6,7 +6,7 @@
 [translations]
 other = "翻訳"
 
-[postAvailable]
+[logAvailable]
 other = "他の言語"
 
 
@@ -22,7 +22,7 @@ other = "ホームページ"
 other = "あっ、ページが見つかりません……"
 
 # Please add hasCJKLanguage = true under [languages.ja] for the below to behave correctly
-# posts/single.html
+# logs/single.html
 #
 [readingTime]
 one   = "一分"

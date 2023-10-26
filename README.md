@@ -35,7 +35,7 @@ This theme was highly inspired by the [hello-friend](https://github.com/panr/hug
 - Nice code highlighting thanks to [**PrismJS**](https://prismjs.com)
 - An easy way to modify the theme with Hugo tooling
 - Fully responsive
-- Support for audio in posts (thanks to [@talbotp](https://github.com/talbotp))
+- Support for audio in logs (thanks to [@talbotp](https://github.com/talbotp))
 - Builtin (enableable/disableable) multilanguage menu
 - Support for social icons
 - Support for sharing buttons
@@ -80,8 +80,8 @@ paginate     = 10
   # Subtitle for home
   homeSubtitle = "A simple and beautiful blog"
 
-  # Set disableReadOtherPosts to true in order to hide the links to other posts.
-  disableReadOtherPosts = false
+  # Set disableReadOtherLogs to true in order to hide the links to other logs.
+  disableReadOtherLogs = false
 
   # Enable sharing buttons, if you like
   enableSharingButtons = true
@@ -104,7 +104,7 @@ paginate     = 10
     title = "Hello Friend NG"
     keywords = ""
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
-    readOtherPosts = "Read other posts"
+    readOtherLogs = "Read other logs"
 
   [languages.en.params]
     subtitle  = "A simple theme for Hugo"
@@ -121,7 +121,7 @@ paginate     = 10
   [[menu.main]]
     identifier = "blog"
     name       = "Blog"
-    url        = "/posts"
+    url        = "/logs"
 ```
 
 ## More things

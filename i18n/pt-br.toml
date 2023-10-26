@@ -6,7 +6,7 @@
 [translations]
 other = "Traduções"
 
-[postAvailable]
+[logAvailable]
 other = "Também disponível em"
 
 
@@ -22,7 +22,7 @@ other = "Início"
 other = "Oops, página não encontrada…"
 
 
-# posts/single.html
+# logs/single.html
 #
 [readingTime]
 one   = "Um minuto"

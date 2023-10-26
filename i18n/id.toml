@@ -6,7 +6,7 @@
 [translations]
 other = "Terjemahan"
 
-[postAvailable]
+[logAvailable]
 other = "Tersedia juga di"
 
 
@@ -22,7 +22,7 @@ other = "Beranda"
 other = "Oops, halaman tidak ditemukan…"
 
 
-# posts/single.html
+# logs/single.html
 #
 [readingTime]
 one   = "Satu menit"

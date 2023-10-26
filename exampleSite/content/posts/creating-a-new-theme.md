@@ -4,8 +4,8 @@ author:
 date: 2014-09-28
 linktitle: Creating a New Theme
 type:
-- post
-- posts
+- log
+- logs
 title: Creating a New Theme
 weight: 10
 series:
@@ -17,7 +17,7 @@ series:
 
 This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I'll explain how Hugo uses templates and how you can organize your templates to create a theme. I won't cover using CSS to style your theme.
 
-We'll start with creating a new site with a very basic template. Then we'll add in a few pages and posts. With small variations on that, you will be able to create many different types of web sites.
+We'll start with creating a new site with a very basic template. Then we'll add in a few pages and logs. With small variations on that, you will be able to create many different types of web sites.
 
 In this tutorial, commands that you enter will start with the "$" prompt. The output will follow. Lines that start with "#" are comments that I've added to explain a point. When I show updates to a file, the ":wq" on the last line means to save the file.
 
@@ -104,11 +104,11 @@ Please note that you can use the front matter to influence Hugo’s choice of te
 
 #### Single Template
 
-A single template is used to render a single piece of content. For example, an article or post would be a single piece of content and use a single template.
+A single template is used to render a single piece of content. For example, an article or log would be a single piece of content and use a single template.
 
 #### List Template
 
-A list template renders a group of related content. That could be a summary of recent postings or all articles in a category. List templates can contain multiple groups.
+A list template renders a group of related content. That could be a summary of recent logings or all articles in a category. List templates can contain multiple groups.
 
 The homepage template is a special type of list template. Hugo assumes that the home page of your site will act as the portal for the rest of the content in the site.
 
@@ -241,7 +241,7 @@ Hugo doesn't ship with a default theme. There are a few available (I counted a d
 
 We're going to create a new theme called "zafta." Since the goal of this tutorial is to show you how to fill out the files to pull in your content, the theme will not contain any CSS. In other words, ugly but functional.
 
-All themes have opinions on content and layout. For example, Zafta uses "post" over "blog". Strong opinions make for simpler templates but differing opinions make it tougher to use themes. When you build a theme, consider using the terms that other themes do.
+All themes have opinions on content and layout. For example, Zafta uses "log" over "blog". Strong opinions make for simpler templates but differing opinions make it tougher to use themes. When you build a theme, consider using the terms that other themes do.
 
 
 ### Create a Skeleton
@@ -553,16 +553,16 @@ When you use `--watch`, the Live Reload script is added by Hugo. Look for live r
 
 "Dynamic home page?" Hugo's a static web site generator, so this seems an odd thing to say. I mean let's have the home page automatically reflect the content in the site every time Hugo builds it. We'll use iteration in the template to do that.
 
-#### Create New Posts
+#### Create New Logs
 
-Now that we have the home page generating static content, let's add some content to the site. We'll display these posts as a list on the home page and on their own page, too.
+Now that we have the home page generating static content, let's add some content to the site. We'll display these logs as a list on the home page and on their own page, too.
 
-Hugo has a command to generate a skeleton post, just like it does for sites and themes.
+Hugo has a command to generate a skeleton log, just like it does for sites and themes.
 
 ```
-$ hugo --verbose new post/first.md
+$ hugo --verbose new log/first.md
 INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
-INFO: 2014/09/29 attempting to create  post/first.md of post
+INFO: 2014/09/29 attempting to create  log/first.md of log
 INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/default.md
 ERROR: 2014/09/29 Unable to Cast <nil> to map[string]interface{}
 
@@ -571,10 +571,10 @@ $
 
 That wasn't very nice, was it?
 
-The "new" command uses an archetype to create the post file. Hugo created an empty default archetype file, but that causes an error when there's a theme. For me, the workaround was to create an archetypes file specifically for the post type.
+The "new" command uses an archetype to create the log file. Hugo created an empty default archetype file, but that causes an error when there's a theme. For me, the workaround was to create an archetypes file specifically for the log type.
 
 ```
-$ vi themes/zafta/archetypes/post.md
+$ vi themes/zafta/archetypes/log.md
 +++
 Description = ""
 Tags = []
@@ -584,28 +584,28 @@ Categories = []
 
 $ find themes/zafta/archetypes -type f | xargs ls -l
 -rw-r--r--  1 quoha  staff   0 Sep 29 21:53 themes/zafta/archetypes/default.md
--rw-r--r--  1 quoha  staff  51 Sep 29 21:54 themes/zafta/archetypes/post.md
+-rw-r--r--  1 quoha  staff  51 Sep 29 21:54 themes/zafta/archetypes/log.md
 
-$ hugo --verbose new post/first.md
+$ hugo --verbose new log/first.md
 INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
-INFO: 2014/09/29 attempting to create  post/first.md of post
-INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/post.md
-INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/post/first.md
-/Users/quoha/Sites/zafta/content/post/first.md created
+INFO: 2014/09/29 attempting to create  log/first.md of log
+INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/log.md
+INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/log/first.md
+/Users/quoha/Sites/zafta/content/log/first.md created
 
-$ hugo --verbose new post/second.md
+$ hugo --verbose new log/second.md
 INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
-INFO: 2014/09/29 attempting to create  post/second.md of post
-INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/post.md
-INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/post/second.md
-/Users/quoha/Sites/zafta/content/post/second.md created
+INFO: 2014/09/29 attempting to create  log/second.md of log
+INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/log.md
+INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/log/second.md
+/Users/quoha/Sites/zafta/content/log/second.md created
 
-$ ls -l content/post
+$ ls -l content/log
 total 16
 -rw-r--r--  1 quoha  staff  104 Sep 29 21:54 first.md
 -rw-r--r--  1 quoha  staff  105 Sep 29 21:57 second.md
 
-$ cat content/post/first.md
+$ cat content/log/first.md
 +++
 Categories = []
 Description = ""
@@ -614,9 +614,9 @@ date = "2014-09-29T21:54:53-05:00"
 title = "first"
 
 +++
-my first post
+my first log
 
-$ cat content/post/second.md
+$ cat content/log/second.md
 +++
 Categories = []
 Description = ""
@@ -625,7 +625,7 @@ date = "2014-09-29T21:57:09-05:00"
 title = "second"
 
 +++
-my second post
+my second log
 
 $
 ```
@@ -649,18 +649,18 @@ in 4 ms
 $
 ```
 
-The output says that it created 2 pages. Those are our new posts:
+The output says that it created 2 pages. Those are our new logs:
 
 ```
 $ find public -type f -name '*.html' | xargs ls -l
 -rw-r--r--  1 quoha  staff  78 Sep 29 22:13 public/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/post/first/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/post/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/post/second/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/log/first/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/log/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:13 public/log/second/index.html
 $
 ```
 
-The new files are empty because because the templates used to generate the content are empty. The homepage doesn't show the new content, either. We have to update the templates to add the posts.
+The new files are empty because because the templates used to generate the content are empty. The homepage doesn't show the new content, either. We have to update the templates to add the logs.
 
 ### List and Single Templates
 
@@ -672,7 +672,7 @@ There are three other types of templates: partials, content views, and terms. We
 
 ### Add Content to the Homepage
 
-The home page will contain a list of posts. Let's update its template to add the posts that we just created. The logic in the template will run every time we build the site.
+The home page will contain a list of logs. Let's update its template to add the logs that we just created. The logic in the template will run every time we build the site.
 
 ```
 $ vi themes/zafta/layouts/index.html
@@ -721,9 +721,9 @@ WARN: 2014/09/29 Unable to locate layout: [404.html theme/404.html]
 in 4 ms
 $ find public -type f -name '*.html' | xargs ls -l
 -rw-r--r--  1 quoha  staff  94 Sep 29 22:23 public/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/post/first/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/post/index.html
--rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/post/second/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/log/first/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/log/index.html
+-rw-r--r--  1 quoha  staff   0 Sep 29 22:23 public/log/second/index.html
 $ cat public/index.html
 <!DOCTYPE html>
 <html>
@@ -738,15 +738,15 @@ $ cat public/index.html
 $
 ```
 
-Congratulations, the home page shows the title of the two posts. The posts themselves are still empty, but let's take a moment to appreciate what we've done. Your template now generates output dynamically. Believe it or not, by inserting the range command inside of those curly braces, you've learned everything you need to know to build a theme. All that's really left is understanding which template will be used to generate each content file and becoming familiar with the commands for the template engine.
+Congratulations, the home page shows the title of the two logs. The logs themselves are still empty, but let's take a moment to appreciate what we've done. Your template now generates output dynamically. Believe it or not, by inserting the range command inside of those curly braces, you've learned everything you need to know to build a theme. All that's really left is understanding which template will be used to generate each content file and becoming familiar with the commands for the template engine.
 
 And, if that were entirely true, this tutorial would be much shorter. There are a few things to know that will make creating a new template much easier. Don't worry, though, that's all to come.
 
-### Add Content to the Posts
+### Add Content to the Logs
 
-We're working with posts, which are in the content/post/ directory. That means that their section is "post" (and if we don't do something weird, their type is also "post").
+We're working with logs, which are in the content/log/ directory. That means that their section is "log" (and if we don't do something weird, their type is also "log").
 
-Hugo uses the section and type to find the template file for every piece of content. Hugo will first look for a template file that matches the section or type name. If it can't find one, then it will look in the _default/ directory. There are some twists that we'll cover when we get to categories and tags, but for now we can assume that Hugo will try post/single.html, then _default/single.html.
+Hugo uses the section and type to find the template file for every piece of content. Hugo will first look for a template file that matches the section or type name. If it can't find one, then it will look in the _default/ directory. There are some twists that we'll cover when we get to categories and tags, but for now we can assume that Hugo will try log/single.html, then _default/single.html.
 
 Now that we know the search rule, let's see what we actually have available:
 
@@ -755,7 +755,7 @@ $ find themes/zafta -name single.html | xargs ls -l
 -rw-r--r--  1 quoha  staff  132 Sep 29 17:31 themes/zafta/layouts/_default/single.html
 ```
 
-We could create a new template, post/single.html, or change the default. Since we don't know of any other content types, let's start with updating the default.
+We could create a new template, log/single.html, or change the default. Since we don't know of any other content types, let's start with updating the default.
 
 Remember, any content that we haven't created a template for will end up using this template. That can be good or bad. Bad because I know that we're going to be adding different types of content and we're going to end up undoing some of the changes we've made. It's good because we'll be able to see immediate results. It's also good to start here because we can start to build the basic layout for the site. As we add more content types, we'll refactor this file and move logic around. Hugo makes that fairly painless, so we'll accept the cost and proceed.
 
@@ -799,11 +799,11 @@ in 4 ms
 
 $ find public -type f -name '*.html' | xargs ls -l
 -rw-r--r--  1 quoha  staff   94 Sep 29 22:40 public/index.html
--rw-r--r--  1 quoha  staff  125 Sep 29 22:40 public/post/first/index.html
--rw-r--r--  1 quoha  staff    0 Sep 29 22:40 public/post/index.html
--rw-r--r--  1 quoha  staff  128 Sep 29 22:40 public/post/second/index.html
+-rw-r--r--  1 quoha  staff  125 Sep 29 22:40 public/log/first/index.html
+-rw-r--r--  1 quoha  staff    0 Sep 29 22:40 public/log/index.html
+-rw-r--r--  1 quoha  staff  128 Sep 29 22:40 public/log/second/index.html
 
-$ cat public/post/first/index.html
+$ cat public/log/first/index.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -811,12 +811,12 @@ $ cat public/post/first/index.html
 </head>
 <body>
   <h1>first</h1>
-  <p>my first post</p>
+  <p>my first log</p>
 
 </body>
 </html>
 
-$ cat public/post/second/index.html
+$ cat public/log/second/index.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -824,18 +824,18 @@ $ cat public/post/second/index.html
 </head>
 <body>
   <h1>second</h1>
-  <p>my second post</p>
+  <p>my second log</p>
 
 </body>
 </html>
 $
 ```
 
-Notice that the posts now have content. You can go to localhost:1313/post/first to verify.
+Notice that the logs now have content. You can go to localhost:1313/log/first to verify.
 
 ### Linking to Content
 
-The posts are on the home page. Let's add a link from there to the post. Since this is the home page, we'll update its template.
+The logs are on the home page. Let's add a link from there to the log. Since this is the home page, we'll update its template.
 
 ```
 $ vi themes/zafta/layouts/index.html
@@ -868,18 +868,18 @@ in 4 ms
 
 $ find public -type f -name '*.html' | xargs ls -l
 -rw-r--r--  1 quoha  staff  149 Sep 29 22:44 public/index.html
--rw-r--r--  1 quoha  staff  125 Sep 29 22:44 public/post/first/index.html
--rw-r--r--  1 quoha  staff    0 Sep 29 22:44 public/post/index.html
--rw-r--r--  1 quoha  staff  128 Sep 29 22:44 public/post/second/index.html
+-rw-r--r--  1 quoha  staff  125 Sep 29 22:44 public/log/first/index.html
+-rw-r--r--  1 quoha  staff    0 Sep 29 22:44 public/log/index.html
+-rw-r--r--  1 quoha  staff  128 Sep 29 22:44 public/log/second/index.html
 
 $ cat public/index.html
 <!DOCTYPE html>
 <html>
 <body>
 
-    <h1><a href="/post/second/">second</a></h1>
+    <h1><a href="/log/second/">second</a></h1>
 
-    <h1><a href="/post/first/">first</a></h1>
+    <h1><a href="/log/first/">first</a></h1>
 
 </body>
 </html>
@@ -887,9 +887,9 @@ $ cat public/index.html
 $
 ```
 
-### Create a Post Listing
+### Create a Log Listing
 
-We have the posts displaying on the home page and on their own page. We also have a file public/post/index.html that is empty. Let's make it show a list of all posts (not just the first ten).
+We have the logs displaying on the home page and on their own page. We also have a file public/log/index.html that is empty. Let's make it show a list of all logs (not just the first ten).
 
 We need to decide which template to update. This will be a listing, so it should be a list template. Let's take a quick look and see which list templates are available.
 
@@ -898,11 +898,11 @@ $ find themes/zafta -name list.html | xargs ls -l
 -rw-r--r--  1 quoha  staff  0 Sep 29 17:31 themes/zafta/layouts/_default/list.html
 ```
 
-As with the single post, we have to decide to update _default/list.html or create post/list.html. We still don't have multiple content types, so let's stay consistent and update the default list template.
+As with the single log, we have to decide to update _default/list.html or create log/list.html. We still don't have multiple content types, so let's stay consistent and update the default list template.
 
 ## Creating Top Level Pages
 
-Let's add an "about" page and display it at the top level (as opposed to a sub-level like we did with posts).
+Let's add an "about" page and display it at the top level (as opposed to a sub-level like we did with logs).
 
 The default in Hugo is to use the directory structure of the content/ directory to guide the location of the generated html in the public/ directory. Let's verify that by creating an "about" page at the top level:
 
@@ -927,9 +927,9 @@ Generate the web site and verify the results.
 $ find public -name '*.html' | xargs ls -l
 -rw-rw-r--  1 mdhender  staff   334 Sep 27 15:08 public/about-time/index.html
 -rw-rw-r--  1 mdhender  staff   527 Sep 27 15:08 public/index.html
--rw-rw-r--  1 mdhender  staff   358 Sep 27 15:08 public/post/first-post/index.html
--rw-rw-r--  1 mdhender  staff     0 Sep 27 15:08 public/post/index.html
--rw-rw-r--  1 mdhender  staff   342 Sep 27 15:08 public/post/second-post/index.html
+-rw-rw-r--  1 mdhender  staff   358 Sep 27 15:08 public/log/first-log/index.html
+-rw-rw-r--  1 mdhender  staff     0 Sep 27 15:08 public/log/index.html
+-rw-rw-r--  1 mdhender  staff   342 Sep 27 15:08 public/log/second-log/index.html
 ```
 
 Notice that the page wasn't created at the top level. It was created in a sub-directory named 'about-time/'. That name came from our slug. Hugo will use the slug to name the generated content. It's a reasonable default, by the way, but we can learn a few things by fighting it for this file.
@@ -941,10 +941,10 @@ $ cat public/index.html
 <!DOCTYPE html>
 <html>
 <body>
-    <h1><a href="http://localhost:1313/post/theme/">creating a new theme</a></h1>
+    <h1><a href="http://localhost:1313/log/theme/">creating a new theme</a></h1>
     <h1><a href="http://localhost:1313/about-time/">about</a></h1>
-    <h1><a href="http://localhost:1313/post/second-post/">second</a></h1>
-    <h1><a href="http://localhost:1313/post/first-post/">first</a></h1>
+    <h1><a href="http://localhost:1313/log/second-log/">second</a></h1>
+    <h1><a href="http://localhost:1313/log/first-log/">first</a></h1>
 <script>document.write('<script src="http://'
         + (location.host || 'localhost').split(':')[0]
 		+ ':1313/livereload.js?mindelay=10"></'
@@ -952,16 +952,16 @@ $ cat public/index.html
 </html>
 ```
 
-Notice that the "about" link is listed with the posts? That's not desirable, so let's change that first.
+Notice that the "about" link is listed with the logs? That's not desirable, so let's change that first.
 
 ```
 $ vi themes/zafta/layouts/index.html
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>posts</h1>
+  <h1>logs</h1>
   {{ range first 10 .Data.Pages }}
-    {{ if eq .Type "post"}}
+    {{ if eq .Type "log"}}
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     {{ end }}
   {{ end }}
@@ -977,7 +977,7 @@ $ vi themes/zafta/layouts/index.html
 :wq
 ```
 
-Generate the web site and verify the results. The home page has two sections, posts and pages, and each section has the right set of headings and links in it.
+Generate the web site and verify the results. The home page has two sections, logs and pages, and each section has the right set of headings and links in it.
 
 But, that about page still renders to about-time/index.html.
 
@@ -985,9 +985,9 @@ But, that about page still renders to about-time/index.html.
 $ find public -name '*.html' | xargs ls -l
 -rw-rw-r--  1 mdhender  staff    334 Sep 27 15:33 public/about-time/index.html
 -rw-rw-r--  1 mdhender  staff    645 Sep 27 15:33 public/index.html
--rw-rw-r--  1 mdhender  staff    358 Sep 27 15:33 public/post/first-post/index.html
--rw-rw-r--  1 mdhender  staff      0 Sep 27 15:33 public/post/index.html
--rw-rw-r--  1 mdhender  staff    342 Sep 27 15:33 public/post/second-post/index.html
+-rw-rw-r--  1 mdhender  staff    358 Sep 27 15:33 public/log/first-log/index.html
+-rw-rw-r--  1 mdhender  staff      0 Sep 27 15:33 public/log/index.html
+-rw-rw-r--  1 mdhender  staff    342 Sep 27 15:33 public/log/second-log/index.html
 ```
 
 Knowing that hugo is using the slug to generate the file name, the simplest solution is to change the slug. Let's do it the hard way and change the permalink in the configuration file.
@@ -1003,7 +1003,7 @@ Generate the web site and verify that this didn't work. Hugo lets "slug" or "URL
 
 ## Sharing Templates
 
-If you've been following along, you probably noticed that posts have titles in the browser and the home page doesn't. That's because we didn't put the title in the home page's template (layouts/index.html). That's an easy thing to do, but let's look at a different option.
+If you've been following along, you probably noticed that logs have titles in the browser and the home page doesn't. That's because we didn't put the title in the home page's template (layouts/index.html). That's an easy thing to do, but let's look at a different option.
 
 We can put the common bits into a shared template that's stored in the themes/zafta/layouts/partials/ directory.
 
@@ -1046,9 +1046,9 @@ Let's change the home page template to use these new partials.
 $ vi themes/zafta/layouts/index.html
 {{ partial "header.html" . }}
 
-  <h1>posts</h1>
+  <h1>logs</h1>
   {{ range first 10 .Data.Pages }}
-    {{ if eq .Type "post"}}
+    {{ if eq .Type "log"}}
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     {{ end }}
   {{ end }}
@@ -1079,21 +1079,21 @@ $ vi themes/zafta/layouts/_default/single.html
 :wq
 ```
 
-Generate the web site and verify the results. The title on the posts and the about page should both reflect the value in the markdown file.
+Generate the web site and verify the results. The title on the logs and the about page should both reflect the value in the markdown file.
 
-## Add “Date Published” to Posts
+## Add “Date Published” to Logs
 
-It's common to have posts display the date that they were written or published, so let's add that. The front matter of our posts has a variable named "date." It's usually the date the content was created, but let's pretend that's the value we want to display.
+It's common to have logs display the date that they were written or published, so let's add that. The front matter of our logs has a variable named "date." It's usually the date the content was created, but let's pretend that's the value we want to display.
 
 ### Add “Date Published” to the Template
 
-We'll start by updating the template used to render the posts. The template code will look like:
+We'll start by updating the template used to render the logs. The template code will look like:
 
 ```
 {{ .Date.Format "Mon, Jan 2, 2006" }}
 ```
 
-Posts use the default single template, so we'll change that file.
+Logs use the default single template, so we'll change that file.
 
 ```
 $ vi themes/zafta/layouts/_default/single.html
@@ -1107,9 +1107,9 @@ $ vi themes/zafta/layouts/_default/single.html
 :wq
 ```
 
-Generate the web site and verify the results. The posts now have the date displayed in them. There's a problem, though. The "about" page also has the date displayed.
+Generate the web site and verify the results. The logs now have the date displayed in them. There's a problem, though. The "about" page also has the date displayed.
 
-As usual, there are a couple of ways to make the date display only on posts. We could do an "if" statement like we did on the home page. Another way would be to create a separate template for posts.
+As usual, there are a couple of ways to make the date display only on logs. We could do an "if" statement like we did on the home page. Another way would be to create a separate template for logs.
 
 The "if" solution works for sites that have just a couple of content types. It aligns with the principle of "code for today," too.
 
@@ -1118,7 +1118,7 @@ Let's assume, though, that we've made our site so complex that we feel we have t
 Let's restore the default single template before we forget.
 
 ```
-$ mkdir themes/zafta/layouts/post
+$ mkdir themes/zafta/layouts/log
 $ vi themes/zafta/layouts/_default/single.html
 {{ partial "header.html" . }}
 
@@ -1129,10 +1129,10 @@ $ vi themes/zafta/layouts/_default/single.html
 :wq
 ```
 
-Now we'll update the post's version of the single template. If you remember Hugo's rules, the template engine will use this version over the default.
+Now we'll update the log's version of the single template. If you remember Hugo's rules, the template engine will use this version over the default.
 
 ```
-$ vi themes/zafta/layouts/post/single.html
+$ vi themes/zafta/layouts/log/single.html
 {{ partial "header.html" . }}
 
   <h1>{{ .Title }}</h1>
@@ -1144,7 +1144,7 @@ $ vi themes/zafta/layouts/post/single.html
 
 ```
 
-Note that we removed the date logic from the default template and put it in the post template. Generate the web site and verify the results. Posts have dates and the about page doesn't.
+Note that we removed the date logic from the default template and put it in the log template. Generate the web site and verify the results. Logs have dates and the about page doesn't.
 
 ### Don't Repeat Yourself
 

@@ -6,7 +6,7 @@
 [translations]
 other = "Çeviriler"
 
-[postAvailable]
+[logAvailable]
 other = "Ayrıca"
 
 
@@ -22,7 +22,7 @@ other = "Ana Sayfa"
 other = "Sayfa bulunamadı…"
 
 
-# posts/single.html
+# logs/single.html
 #
 [readingTime]
 one   = "Bir dakika"

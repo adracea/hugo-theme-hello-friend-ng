@@ -34,7 +34,7 @@ disable404     = false
 disableHugoGeneratorInject = false
 
 [permalinks]
-  posts = "/posts/:year/:month/:title/"
+  logs = "/logs/:year/:month/:title/"
 
 [author]
   name = "Jane Doe"
@@ -70,9 +70,9 @@ disableHugoGeneratorInject = false
   #
   # gitUrl = ""
 
-  # Set disableReadOtherPosts to true in order to hide the links to other posts.
+  # Set disableReadOtherLogs to true in order to hide the links to other logs.
   #
-  disableReadOtherPosts = false
+  disableReadOtherLogs = false
 
   # Enable theme toggle
   # 
@@ -104,7 +104,7 @@ disableHugoGeneratorInject = false
 
   # Toggle this option need to rebuild SCSS, requires extended version of Hugo
   #
-  justifyContent = false  # Set "text-align: justify" to .post-content.
+  justifyContent = false  # Set "text-align: justify" to .log-content.
 
   # Integrate Plausible.io
   # plausibleDataDomain = 'test.com'
@@ -203,6 +203,6 @@ disableHugoGeneratorInject = false
     name       = "About"
     url        = "about/"
   [[menu.main]]
-    identifier = "posts"
-    name       = "Posts"
-    url        = "posts/"
+    identifier = "logs"
+    name       = "Logs"
+    url        = "logs/"

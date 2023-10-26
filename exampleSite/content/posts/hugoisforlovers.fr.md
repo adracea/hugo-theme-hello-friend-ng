@@ -8,7 +8,7 @@ featuredpath = "date"
 linktitle = ""
 slug = "Debuter avec Hugo"
 title = "Débuter avec Hugo"
-type = "post"
+type = "log"
 [ author ]
   name = "Hugo Authors"
 +++
